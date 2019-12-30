@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { CandidatesComponent } from './components/candidates/candidates.component';
 import { CandidateComponent } from './components/candidate/candidate.component';
+import { FormComponent } from './components/form/form.component';
 
-const routes: Routes = [
-    { path: 'candidatos', component: CandidatesComponent },
-    { path: 'candidato', component: CandidateComponent }
+export const candidatesRoutes: Routes = [
+    { path: 'candidato', component: CandidateComponent },
+    { path: 'registro', component: FormComponent }
 ];
 
 @NgModule({
-    imports: [CommonModule, RouterModule.forChild(routes)],
+    imports: [CommonModule, RouterModule.forChild(candidatesRoutes)],
     exports: [RouterModule]
 })
-export class CandidatesRoutingModule {}
+export class CandidatesRoutingModule { }

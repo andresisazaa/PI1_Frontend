@@ -1,1 +1,61 @@
-<p>form works!</p>
+<form [formGroup]="candidatesForm" (ngSubmit)="submitForm()">
+    <div class="form-row">
+        <div class="form-group">
+            <label>Nombre completo</label>
+            <input type="text" class="form-control" formControlName="name" placeholder="nombre..."
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">Nombre es requerido</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" formControlName="email" placeholder="email..."
+                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email es requerido</div>
+                <div *ngIf="f.email.errors.email">Email debe ser válido</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label>Teléfono</label>
+            <input type="number" class="form-control" formControlName="phoneNumber" placeholder="teléfono..."
+                [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
+            <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+                <div *ngIf="f.phoneNumber.errors.required">Teléfono es requerido</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Cargo aspirado</label>
+            <select class="custom-select" formControlName="aspiratedJob"
+            [ngClass]="{ 'is-invalid': submitted && f.aspiratedJob.errors }">
+                <option disabled selected>seleccione...</option>
+                <option *ngFor="let aspiratedJob of aspiratedJobs" [value]="aspiratedJob">{{aspiratedJob}}</option>
+            </select>
+            <div *ngIf="submitted && f.aspiratedJob.errors" class="invalid-feedback">
+                <div *ngIf="f.aspiratedJob.errors.required">Cargo aspirado es requerido</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label>Canal de atracción</label>
+            <select class="custom-select" formControlName="attractionChannel"
+            [ngClass]="{ 'is-invalid': submitted && f.attractionChannel.errors }">
+                <option selected disabled>seleccione...</option>
+                <option *ngFor="let attractionChannel of attractionChannels" [value]="attractionChannel">
+                    {{attractionChannel}}</option>
+            </select>
+            <div *ngIf="submitted && f.attractionChannel.errors" class="invalid-feedback">
+                <div *ngIf="f.attractionChannel.errors.required">Canal de atracción es requerido</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <button class="btn btn-primary form-control" type="submit">Registrar candidato</button>
+        </div>
+    </div>
+</form>
