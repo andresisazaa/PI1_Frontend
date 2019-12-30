@@ -1,8 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { CandidatesModule } from './candidates/candidates.module';
-
 import { AppRoutingModule } from './app-routing.module';
+
+import { CandidatesModule } from './candidates/candidates.module';
+import { HiringProcessesModule } from './hiring-processes/hiring-processes.module';
+import { ReportsModule } from './reports/reports.module';
+import { SharedModule } from './shared/shared.module';
+
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -12,7 +16,10 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CandidatesModule
+    CandidatesModule,
+    HiringProcessesModule,
+    ReportsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
