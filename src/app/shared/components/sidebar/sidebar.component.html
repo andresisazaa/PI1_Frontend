@@ -1,0 +1,7 @@
+<nav class="sidenav" [ngClass]="{ 'sidebar--openned': !closed, 'sidebar--closed': closed }">
+    <span class="sidebar__close-button" (click)="changeNavbarStatus()">&times;</span>
+    <a><img src="assets/logo.png" width="100" height="50" alt="TechAndSolve logo" /></a>
+    <a class="sidenav__link" routerLinkActive="sidenav__link--active" routerLink="/procesos">Procesos de selección</a>
+    <a class="sidenav__link" routerLinkActive="sidenav__link--active" routerLink="/candidatos">Candidatos</a>
+    <a class="sidenav__link" routerLinkActive="sidenav__link--active" routerLink="/reportes">Reportes</a>
+</nav>

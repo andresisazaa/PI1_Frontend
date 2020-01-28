@@ -1,8 +1,12 @@
-* {
-  cursor: pointer;
+.main-section {
+  padding: 1rem;
+  transition: margin-left 0.5s;
 }
 
-.main-section {
-    height: 100vh;
-    margin: 1em auto;
+.main-section--fullwidth {
+  margin-left: 200px;
+}
+
+.main-section--nofullwidth {
+  margin-left: 0;
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { Candidate } from '../../models/candidate.model';
 import { CandidatesService } from '../../services/candidates.service';
 
 @Component({
@@ -23,8 +22,8 @@ export class FormComponent implements OnInit {
       name: new FormControl(null, [Validators.required, Validators.minLength(10)]),
       email: new FormControl(null, [Validators.required, Validators.email]),
       phoneNumber: new FormControl(null, [Validators.required, Validators.minLength(7)]),
-      aspiratedJob: new FormControl('', Validators.required),
-      attractionChannel: new FormControl('', Validators.required)
+      aspiratedJob: new FormControl(null, Validators.required),
+      attractionChannel: new FormControl(null, Validators.required)
     });
     console.log(this.f);
   }
@@ -36,19 +35,23 @@ export class FormComponent implements OnInit {
   submitForm() {
     console.log(this.f);
     this.submitted = true;
-    if (this.candidatesForm.invalid) {
-      return;
-    }
+    if (this.candidatesForm.invalid) { return; }
+
     const name = this.candidatesForm.value['name'];
     const email = this.candidatesForm.value['email'];
     const phoneNumber = this.candidatesForm.value['phoneNumber'];
     const aspiratedJob = this.candidatesForm.value['aspiratedJob'];
     const attractionChannel = this.candidatesForm.value['attractionChannel'];
-    const candidate = new Candidate(name, email, phoneNumber, aspiratedJob, attractionChannel);
-    this.candidatesService.saveCandidate(candidate);
-  }
 
-  resetForm() {
+    const candidate = {
+      name,
+      email,
+      phoneNumber,
+      aspiratedJob,
+      attractionChannel
+    };
+    this.candidatesService.createCandidate(candidate);
     this.candidatesForm.reset();
+    this.submitted = false;
   }
 }

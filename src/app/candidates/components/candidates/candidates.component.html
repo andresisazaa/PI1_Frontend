@@ -1,2 +1,33 @@
-<h1>Módulo de candidatos</h1>
-<router-outlet></router-outlet>
+<div class="row">
+    <div class="col">
+        <a [routerLink]="['/candidatos/registro']" class="btn btn-primary">Registrar un candidato</a>
+        <h3>Lista de candidatos</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <table class="table table-hover table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Cargo aspirado</th>
+                    <th>Canal de atracción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let candidate of candidates; let i=index;">
+                    <th scope="row">{{candidate.id}}</th>
+                    <td>{{candidate.name}}</td>
+                    <td>{{candidate.email}}</td>
+                    <td>{{candidate.phoneNumber}}</td>
+                    <td>{{candidate.aspiratedJob}}</td>
+                    <td>{{candidate.attractionChannel}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
