@@ -7,21 +7,19 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CandidatesService {
-  URL = 'https://pi1-backend.herokuapp.com';
+  // URL = 'https://pi1-backend.herokuapp.com';
+  URL = 'http://localhost:8080/api/v1';
+  // candidates: Candidate[] = [];
+  // URL = 'https://pi1-backend.herokuapp.com';
   candidates: Candidate[] = [new Candidate(1, 'Andrés Felipe Isaza Arboleda', 'andres.isazaa@udea.edu.co', 3128098715, 'Frontend Developer', 'Computrabajo'),
   new Candidate(2, 'Santiago Gaviria Zapata', 'santiago.gaviriaz@udea.edu.co', 3128098715, 'Node.js Developer', 'LinkedIn')];
 
   constructor(private http: HttpClient) { }
 
-  saveCandidate(candidate: Candidate) {
-    this.candidates.push(candidate);
-    console.log(this.candidates);
-  }
-
   getCandidates(): Observable<Candidate[]> {
     return this.http.get(`${this.URL}/candidate`)
       .pipe(map(res => {
-        let candidates: Candidate[] = [];
+        const candidates: Candidate[] = [];
         Object.keys(res).forEach(key => {
           const { id, name, email, phoneNumber, aspiratedJob, atractionChannel } = res[key];
           const candidate = new Candidate(id, name, email, phoneNumber, aspiratedJob, atractionChannel);

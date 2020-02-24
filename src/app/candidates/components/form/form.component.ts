@@ -50,8 +50,13 @@ export class FormComponent implements OnInit {
       aspiratedJob,
       attractionChannel
     };
-    this.candidatesService.createCandidate(candidate);
-    this.candidatesForm.reset();
-    this.submitted = false;
+
+    this.candidatesService.createCandidate(candidate).subscribe(response => {
+      console.log(response);
+      console.log('CREADO CON EXITO');
+      
+    })
+    // this.candidatesForm.reset();
+    // this.submitted = false;
   }
 }

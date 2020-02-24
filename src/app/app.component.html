@@ -1,4 +1,4 @@
-<app-sidebar (changeSidebarStatus)="changeSidebar($event)"></app-sidebar>
+<app-sidebar (onSidebarChanges)="changeSidebar($event)"></app-sidebar>
 <main class="container main-section"
     [ngClass]="{'main-section--fullwidth': !closed, 'main-section--nofullwidth': closed}">
     <router-outlet></router-outlet>
