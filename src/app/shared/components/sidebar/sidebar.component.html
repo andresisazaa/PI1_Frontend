@@ -1,8 +1,21 @@
 <nav class="sidenav" [ngClass]="{ 'sidebar--openned': !closed, 'sidebar--closed': closed }">
     <span class="sidebar__close-button" (click)="changeSidebarStatus()">&times;</span>
-    <a><img src="assets/logo.png" width="100" height="50" alt="TechAndSolve logo" /></a>
-    <a class="sidenav__link" routerLinkActive="sidenav__link--active" routerLink="/procesos">Procesos de selección</a>
-    <a class="sidenav__link" routerLinkActive="sidenav__link--active" routerLink="/candidatos">Candidatos</a>
-    <a class="sidenav__link" routerLinkActive="sidenav__link--active" routerLink="/reportes">Reportes</a>
+    <a>
+        <figure class="sidenav__image-container">
+            <img class="sidenav__image" src="assets/logo.png" alt="TechAndSolve logo" />
+        </figure>
+    </a>
+
+    <a routerLink="/procesos" class="sidenav__link" routerLinkActive="sidenav__link--active">
+        <i class="fa fa-briefcase sidenav__link__icon"></i>
+        Procesos de selección</a>
+
+    <a routerLink="/candidatos" class="sidenav__link" routerLinkActive="sidenav__link--active">
+        <i class="fa fa-users sidenav__link__icon"></i>
+        Candidatos</a>
+
+    <a routerLink="/reportes" class="sidenav__link" routerLinkActive="sidenav__link--active">
+        <i class="fa fa-area-chart sidenav__link__icon"></i>
+        Reportes</a>
 </nav>
-<span (click)="changeSidebarStatus()">&times;</span>
+<button class="sidenav__button" (click)="changeSidebarStatus()"><i class="fa fa-bars"></i></button>

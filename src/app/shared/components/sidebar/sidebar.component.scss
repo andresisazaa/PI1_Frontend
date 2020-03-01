@@ -6,9 +6,10 @@
   top: 0;
   left: 0;
   padding-top: 1rem;
-  background-color: #3c4c4c;
+  background-color: #189bb0;
   overflow-x: hidden;
   transition: 0.5s;
+  cursor: pointer;
 }
 
 .sidebar--openned {
@@ -22,27 +23,56 @@
 .sidebar__close-button {
   position: absolute;
   top: 0;
-  right: 25px;
+  right: 15px;
   font-size: 3rem;
   margin-left: 50px;
 }
 
 .sidenav__link {
-  width: 150px;
+  width: 180px;
   padding: 0.5rem;
   text-decoration: none;
-  font-size: 1rem;
-  color: #818181;
-  display: block;
+  font-size: 1.4rem;
+  color: white;
+  display: flex;
+  align-items: center;
   transition: 0.3s;
 }
 
+.sidenav__link__icon {
+  margin: 0 0.5rem;
+  font-size: 2rem;
+  color: lightblue;
+}
+
+.sidenav__image-container {
+  width: 120px;
+  height: 120px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidenav__image {
+  width: 100px;
+  height: 50px;
+}
+
 .sidenav__link:hover {
-  color: #f1f1f1;
+  color: #f84e6d;
 }
 
 .sidenav__link--active {
-  color: navy;
+  color: #f84e6d;
+}
+
+.sidenav__button {
+  background-color: #58468c;
+  text-decoration: none;
+  border: none;
+  width: 50px;
 }
 
 @media screen and (max-height: 450px) {
