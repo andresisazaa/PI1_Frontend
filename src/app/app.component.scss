@@ -1,12 +1,13 @@
 .main-section {
-  transition: margin-left 0.5s;
+  transition: margin-left 0.25s;
   overflow: hidden;
+  padding: 1rem;
 }
 
-.main-section--fullwidth {
+.navbar--open {
   margin-left: 200px;
 }
 
-.main-section--nofullwidth {
-  margin-left: 0;
-}
+// .main-section--nofullwidth {
+//   margin-left: 0;
+// }

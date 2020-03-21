@@ -1,0 +1,39 @@
+@import "../../../../scss/variables";
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 5px;
+  text-align: left;
+}
+
+table {
+  margin: 1rem auto;
+}
+
+h2 {
+  text-align: center;
+}
+
+.register-candidate {
+  width: 200px;
+  background-color: $primary-pink;
+  border: none;
+  color: white;
+  padding: 1rem;
+  border-radius: 2rem;
+  margin: 0 auto;
+  margin-left: 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.candidates-section {
+    margin-top: 30px;
+}

@@ -5,7 +5,7 @@ import { CandidateComponent } from './components/candidate/candidate.component';
 import { FormComponent } from './components/form/form.component';
 
 export const candidatesRoutes: Routes = [
-    { path: 'candidato', component: CandidateComponent },
+    { path: 'candidatos/candidato/:id', component: CandidateComponent },
     { path: 'candidatos/registro', component: FormComponent }
 ];
 

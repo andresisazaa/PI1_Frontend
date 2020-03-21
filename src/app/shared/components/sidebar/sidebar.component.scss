@@ -1,19 +1,19 @@
 .sidenav {
   height: 100%;
-  width: 0;
-  position: fixed;
+  background-color: #189bb0;
+  cursor: pointer;
+  position: absolute;
   z-index: 1;
   top: 0;
   left: 0;
+  transform: translateX(-100%);
   padding-top: 1rem;
-  background-color: #189bb0;
-  overflow-x: hidden;
-  transition: 0.5s;
-  cursor: pointer;
+  width: 200px;
+  transition: transform 0.25s ease-out;
 }
 
 .sidebar--openned {
-  width: 200px;
+  transform: translateX(0);
 }
 
 .sidebar---closed {
@@ -32,7 +32,7 @@
   width: 180px;
   padding: 0.5rem;
   text-decoration: none;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: white;
   display: flex;
   align-items: center;
@@ -46,10 +46,8 @@
 }
 
 .sidenav__image-container {
-  width: 120px;
-  height: 120px;
-  background-color: white;
-  border-radius: 50%;
+  width: 130px;
+  height: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,6 +68,9 @@
 
 .sidenav__button {
   background-color: #58468c;
+  position: absolute;
+  top: 0;
+  left: 0;
   text-decoration: none;
   border: none;
   width: 50px;

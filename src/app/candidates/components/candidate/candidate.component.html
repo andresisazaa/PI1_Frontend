@@ -1,7 +1,22 @@
-<article class="candidate">
-    <h4>Nombre <strong>{{candidate.name}}</strong></h4>
-    <h4>Email <strong>{{candidate.email}}</strong></h4>
-    <h4>Teléfono <strong>{{candidate.phoneNumber}}</strong></h4>
-    <h4>Cargo aspirado <strong>{{candidate.aspiratedJob}}</strong></h4>
-    <h4>Canal de atracción <strong>{{candidate.attractionChannel}}</strong></h4>
+<article *ngIf="candidate" class="candidate">
+    <div class="candidate__item">
+        <span class="candidate__item__label">Nombre</span>
+        <span class="candidate__item__value">{{candidate.name}}</span>
+    </div>
+    <div class="candidate__item">
+        <span class="candidate__item__label">Email</span>
+        <span class="candidate__item__value">{{candidate.email}}</span>
+    </div>
+    <div class="candidate__item">
+        <span class="candidate__item__label">Teléfono</span>
+        <span class="candidate__item__value">{{candidate.phoneNumber}}</span>
+    </div>
+    <div class="candidate__item">
+        <span class="candidate__item__label">Cargo aspirado</span>
+        <span class="candidate__item__value">{{candidate.aspiratedJob}}</span>
+    </div>
+    <div class="candidate__item">
+        <span class="candidate__item__label">Canal de atracción</span>
+        <span class="candidate__item__value">{{candidate.attractionChannel}}</span>
+    </div>
 </article>

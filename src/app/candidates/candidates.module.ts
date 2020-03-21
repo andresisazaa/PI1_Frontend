@@ -21,6 +21,6 @@ import { FormComponent } from './components/form/form.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  exports: [CandidatesComponent]
+  exports: [CandidatesComponent, CandidateComponent, FormComponent]
 })
 export class CandidatesModule { }

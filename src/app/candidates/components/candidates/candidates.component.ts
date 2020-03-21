@@ -9,19 +9,39 @@ import { Candidate } from '../../models/candidate.model';
 })
 export class CandidatesComponent implements OnInit {
   // candidates: Candidate[] = [];
-  candidates: Candidate[] = [new Candidate(1, 'Andrés Felipe Isaza Arboleda', 'andres.isazaa@udea.edu.co', 3128098715, 'Frontend Developer', 'Computrabajo'),
-  new Candidate(2, 'Santiago Gaviria Zapata', 'santiago.gaviriaz@udea.edu.co', 3128098715, 'Node.js Developer', 'LinkedIn')];
+  candidates: Candidate[] = [
+    {
+      id: 1,
+      name: 'Andrés Felipe Isaza Arboleda',
+      email: 'andres.isazaa@udea.edu.co',
+      phoneNumber: '3128098715',
+      aspiratedJob: 'Node.js Developer',
+      attractionChannel: 'LinkedIn',
+      CVUrl: 'https://www.youtube.com'
+    },
+    {
+      id: 2,
+      name: 'Santiago Gaviria Zapata',
+      email: 'santiago.gaviriaz@udea.edu.co',
+      phoneNumber: '3128098715',
+      aspiratedJob: 'Node.js Developer',
+      attractionChannel: 'LinkedIn',
+      CVUrl: 'https://www.facebook.com'
+    }];
 
   constructor(private candidatesService: CandidatesService) { }
 
   ngOnInit() {
-    this.candidatesService.getCandidates()
-      .subscribe(candidates => {
-        this.candidates = candidates;
-      }, error => {
-        console.error(error);
-        console.log('No se pudieron obtener los candidatos');
-      });
+    this.candidates = this.candidatesService.candidates;
+    console.log(this.candidates);
+    
+    // this.candidatesService.getCandidates()
+    //   .subscribe(candidates => {
+    //     this.candidates = candidates;
+    //   }, error => {
+    //     console.error(error);
+    //     console.log('No se pudieron obtener los candidatos');
+    //   });
   }
 
 }

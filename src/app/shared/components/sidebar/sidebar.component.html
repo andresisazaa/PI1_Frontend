@@ -1,9 +1,10 @@
-<nav class="sidenav" [ngClass]="{ 'sidebar--openned': !closed, 'sidebar--closed': closed }">
-    <span class="sidebar__close-button" (click)="changeSidebarStatus()">&times;</span>
-    <a>
-        <figure class="sidenav__image-container">
-            <img class="sidenav__image" src="assets/logo.png" alt="TechAndSolve logo" />
-        </figure>
+<nav class="sidenav" [ngClass]="{ 'sidebar--openned': open}">
+    <div style="position: relative;"><span class="sidebar__close-button" (click)="changeSidebarStatus()">&times;</span>
+    </div>
+    <a routerLink="/candidatos">
+        <div class="sidenav__image-container">
+            <img class="sidenav__image" src="assets/logo-blanco.png" alt="TechAndSolve" />
+        </div>
     </a>
 
     <a routerLink="/procesos" class="sidenav__link" routerLinkActive="sidenav__link--active">

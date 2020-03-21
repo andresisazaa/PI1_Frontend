@@ -9,7 +9,7 @@
 .form-section__title {
   font-size: 2rem;
   text-align: center;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   color: $primary-blue;
 }
 
@@ -49,6 +49,7 @@
 .form__item__input[type="number"] {
   border: none;
   border-bottom: 2px solid $primary-pink;
+  padding-bottom: 3px;
 }
 
 .form__item__input:focus,
@@ -69,9 +70,13 @@
   font-size: 1.2rem;
 }
 
+.form__item__validator {
+  color: red;
+}
+
 @media screen and (max-width: 600px) {
-    .form {
-        margin: 0.2rem auto;
-        max-width: 400px;
-    }
+    // .form {
+    //     margin: 0.2rem auto;
+    //     max-width: 400px;
+    // }
 }

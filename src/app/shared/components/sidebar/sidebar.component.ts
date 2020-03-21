@@ -6,15 +6,15 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  closed: boolean = false;
+  open: boolean = true;
   @Output() onSidebarChanges = new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit() { }
 
   changeSidebarStatus() {
-    this.closed = !this.closed;
-    this.onSidebarChanges.emit(this.closed);
+    this.open = !this.open;
+    this.onSidebarChanges.emit(this.open);
   }
 
 }

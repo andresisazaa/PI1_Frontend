@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Candidate } from '../../models/candidate.model';
+import { ActivatedRoute } from '@angular/router';
+import { CandidatesService } from '../../services/candidates.service';
 
 @Component({
   selector: 'app-candidate',
@@ -7,7 +9,15 @@ import { Candidate } from '../../models/candidate.model';
   styleUrls: ['./candidate.component.scss']
 })
 export class CandidateComponent implements OnInit {
-  @Input() candidate: Candidate;
-  constructor() { }
-  ngOnInit() {}
+  candidate: Candidate;
+  id: number;
+  constructor(private activatedRoute: ActivatedRoute,
+    private candidatesService: CandidatesService) { }
+
+  ngOnInit() {
+    this.activatedRoute.params.subscribe((params) => {
+      this.id = Number(params['id']);
+      this.candidate = this.candidatesService.candidates.find(candidate => candidate.id === this.id);
+    })
+  }
 }

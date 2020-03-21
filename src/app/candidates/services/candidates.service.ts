@@ -11,18 +11,40 @@ export class CandidatesService {
   URL = 'http://localhost:8080/api/v1';
   // candidates: Candidate[] = [];
   // URL = 'https://pi1-backend.herokuapp.com';
-  candidates: Candidate[] = [new Candidate(1, 'Andrés Felipe Isaza Arboleda', 'andres.isazaa@udea.edu.co', 3128098715, 'Frontend Developer', 'Computrabajo'),
-  new Candidate(2, 'Santiago Gaviria Zapata', 'santiago.gaviriaz@udea.edu.co', 3128098715, 'Node.js Developer', 'LinkedIn')];
+  candidates: Candidate[] = [
+    {
+      id: 1,
+      name: 'Andrés Felipe Isaza Arboleda',
+      email: 'andres.isazaa@udea.edu.co',
+      phoneNumber: '3128098715',
+      aspiratedJob: 'Node.js Developer',
+      attractionChannel: 'LinkedIn',
+      CVUrl: 'https://www.youtube.com'
+    },
+    {
+      id: 2,
+      name: 'Santiago Gaviria Zapata',
+      email: 'santiago.gaviriaz@udea.edu.co',
+      phoneNumber: '3128098715',
+      aspiratedJob: 'Node.js Developer',
+      attractionChannel: 'LinkedIn',
+      CVUrl: 'https://www.facebook.com'
+    }];
 
   constructor(private http: HttpClient) { }
+
+  pushCandidate(candidate: Candidate) {
+    this.candidates.push(candidate);
+  }
 
   getCandidates(): Observable<Candidate[]> {
     return this.http.get(`${this.URL}/candidate`)
       .pipe(map(res => {
         const candidates: Candidate[] = [];
         Object.keys(res).forEach(key => {
-          const { id, name, email, phoneNumber, aspiratedJob, atractionChannel } = res[key];
-          const candidate = new Candidate(id, name, email, phoneNumber, aspiratedJob, atractionChannel);
+          const { id, name, email, phoneNumber, aspiratedJob, CVUrl } = res[key];
+          const attractionChannel = res['atractionChannel'];
+          const candidate: Candidate = { id, name, email, phoneNumber, aspiratedJob, attractionChannel, CVUrl };
           candidates.push(candidate);
         });
         return candidates;
@@ -37,8 +59,9 @@ export class CandidatesService {
         const email = res['email'];
         const phoneNumber = res['phoneNumber'];
         const aspiratedJob = res['aspiratedJob'];
-        const atractionChannel = res['atractionChannel'];
-        const candidate = new Candidate(id, name, email, phoneNumber, aspiratedJob, atractionChannel);
+        const attractionChannel = res['atractionChannel'];
+        const CVUrl = res['CVUrl'];
+        const candidate: Candidate = { id, name, email, phoneNumber, aspiratedJob, attractionChannel, CVUrl };
         return candidate;
       }));
   }
@@ -51,8 +74,9 @@ export class CandidatesService {
         const email = res['email'];
         const phoneNumber = res['phoneNumber'];
         const aspiratedJob = res['aspiratedJob'];
-        const atractionChannel = res['atractionChannel'];
-        const candidate = new Candidate(id, name, email, phoneNumber, aspiratedJob, atractionChannel);
+        const attractionChannel = res['atractionChannel'];
+        const CVUrl = res['CVUrl'];
+        const candidate: Candidate = { id, name, email, phoneNumber, aspiratedJob, attractionChannel, CVUrl };
         return candidate;
       }));
   }
