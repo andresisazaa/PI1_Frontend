@@ -15,9 +15,12 @@ export class CandidateComponent implements OnInit {
     private candidatesService: CandidatesService) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params) => {
+    this.activatedRoute.params.subscribe(params => {
       this.id = Number(params['id']);
-      this.candidate = this.candidatesService.candidates.find(candidate => candidate.id === this.id);
-    })
+      this.candidatesService.getCandidateById(this.id)
+        .subscribe(candidate => {
+          this.candidate = candidate;
+        });
+    });
   }
 }

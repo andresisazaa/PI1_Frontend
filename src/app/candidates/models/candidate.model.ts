@@ -3,7 +3,7 @@ export interface Candidate {
     name: string;
     email: string;
     phoneNumber: string;
-    aspiratedJob: string;
+    aspiratedJob?: string;
     attractionChannel: string;
     CVUrl?: string;
 }

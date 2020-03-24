@@ -37,8 +37,8 @@
             <select class="form__item__select" formControlName="aspiratedJob"
                 [ngClass]="{ 'invalid':submitted && f.aspiratedJob.errors}">
                 <option [ngValue]="null" disabled>Seleccione uno...</option>
-                <option *ngFor="let aspiratedJob of aspiratedJobs" [ngValue]="aspiratedJob">
-                    {{ aspiratedJob }}
+                <option *ngFor="let aspiratedJob of aspiratedJobs" [ngValue]="aspiratedJob.id">
+                    {{ aspiratedJob.name }}
                 </option>
             </select>
             <div class="form__item__validator" *ngIf="submitted && f.aspiratedJob.errors">
@@ -50,8 +50,8 @@
             <select class="form__item__select" formControlName="attractionChannel"
                 [ngClass]="{ 'invalid': submitted && f.attractionChannel.errors}">
                 <option [ngValue]="null" disabled>Seleccione uno...</option>
-                <option *ngFor="let attractionChannel of attractionChannels" [ngValue]="attractionChannel">
-                    {{ attractionChannel }}</option>
+                <option *ngFor="let attractionChannel of attractionChannels" [ngValue]="attractionChannel.id">
+                    {{ attractionChannel.name }}</option>
             </select>
             <div class="form__item__validator" *ngIf="submitted && f.attractionChannel.errors">
                 <small *ngIf="f.attractionChannel.errors.required">Canal de atracción es requerido</small>

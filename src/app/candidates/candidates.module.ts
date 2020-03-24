@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CandidateComponent } from './components/candidate/candidate.component';
 import { CandidatesComponent } from './components/candidates/candidates.component';
 import { FormComponent } from './components/form/form.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { FormComponent } from './components/form/form.component';
     CommonModule,
     CandidatesRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   exports: [CandidatesComponent, CandidateComponent, FormComponent]
 })
