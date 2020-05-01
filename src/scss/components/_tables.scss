@@ -1,0 +1,25 @@
+.table-wrapper {
+  overflow-x: auto;
+  margin: 0 auto;
+}
+
+.tas-table {
+  border: 1px solid $primary-purple;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.tas-table__header {
+  background-color: $primary-purple;
+  color: white;
+}
+
+.tas-table th,
+.tas-table td {
+  border-collapse: collapse;
+  border: 1px solid black;
+  padding: 0.5rem;
+}
+.tas-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

@@ -2,7 +2,14 @@
 @import "variables";
 @import "grid";
 @import "mixins";
-
+@import "core";
+@import "components/buttons";
+@import "components/forms";
+@import "components/tables";
 body {
     font-size: 16px;
+    height: 100vh;
+}
+* {
+    box-sizing: border-box;
 }

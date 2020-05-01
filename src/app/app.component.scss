@@ -1,13 +1,11 @@
 .main-section {
-  transition: margin-left 0.25s;
-  overflow: hidden;
-  padding: 1rem;
-}
-
-.navbar--open {
+  width: calc(100% - 200px);
   margin-left: 200px;
 }
 
-// .main-section--nofullwidth {
-//   margin-left: 0;
-// }
+@media screen and (max-width: 768px) {
+  .main-section {
+    width: 100%;
+    margin: 0;
+  }
+}

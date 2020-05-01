@@ -1,0 +1,31 @@
+.tas-btn {
+  display: inline-block;
+  border: none;
+  color: white;
+  padding: 1rem;
+  border-radius: 2rem;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.tas-btn--purple {
+  background-color: $primary-purple;
+}
+
+.tas-btn--blue {
+  background-color: $primary-blue;
+}
+
+.tas-btn--pink {
+  background-color: $primary-pink;
+}
+
+.tas-btn:hover {
+    opacity: 0.75;
+    box-shadow: 2px 2px 2px 2px rgba($color:gray, $alpha: 0.75);
+}
+
+.tas-btn:focus {
+  outline: none;
+}

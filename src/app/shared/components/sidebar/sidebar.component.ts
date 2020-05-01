@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,7 +9,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class SidebarComponent implements OnInit {
   open: boolean = true;
   @Output() onSidebarChanges = new EventEmitter<boolean>();
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() { }
 
@@ -17,4 +18,7 @@ export class SidebarComponent implements OnInit {
     this.onSidebarChanges.emit(this.open);
   }
 
+  navigate(){
+    // this.router.navigateByUrl('/candidatos')
+  }
 }

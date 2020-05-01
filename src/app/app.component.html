@@ -1,6 +1,4 @@
 <app-sidebar (onSidebarChanges)="changeSidebar($event)"></app-sidebar>
-<main class="main-section"
-    [ngClass]="{'navbar--open': open}">
-    <router-outlet></router-outlet>
+<main class="main-section">
+  <router-outlet></router-outlet>
 </main>
-<app-footer></app-footer>

@@ -1,36 +1,27 @@
+@import "../../../../scss/variables";
+
 .sidenav {
-  height: 100%;
-  background-color: #189bb0;
-  cursor: pointer;
-  position: absolute;
-  z-index: 1;
+  position: fixed;
   top: 0;
   left: 0;
-  transform: translateX(-100%);
-  padding-top: 1rem;
   width: 200px;
-  transition: transform 0.25s ease-out;
+  height: 100%;
+  background-color: $primary-blue;
+  cursor: pointer;
+  padding-top: 1rem;
 }
 
-.sidebar--openned {
-  transform: translateX(0);
-}
-
-.sidebar---closed {
-  width: 0;
-}
-
-.sidebar__close-button {
-  position: absolute;
-  top: 0;
-  right: 15px;
-  font-size: 3rem;
-  margin-left: 50px;
-}
+// .sidebar__close-button {
+//   position: absolute;
+//   top: 0;
+//   right: 15px;
+//   font-size: 3rem;
+//   margin-left: 50px;
+// }
 
 .sidenav__link {
   width: 180px;
-  padding: 0.5rem;
+  padding: 0.2rem;
   text-decoration: none;
   font-size: 1.2rem;
   color: white;
@@ -42,45 +33,76 @@
 .sidenav__link__icon {
   margin: 0 0.5rem;
   font-size: 2rem;
-  color: lightblue;
 }
 
 .sidenav__image-container {
-  width: 130px;
-  height: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .sidenav__image {
-  width: 100px;
-  height: 50px;
-}
-
-.sidenav__link:hover {
-  color: #f84e6d;
-}
-
-.sidenav__link--active {
-  color: #f84e6d;
+  width: 110px;
+  height: auto;
+  margin: 1rem auto;
 }
 
 .sidenav__button {
-  background-color: #58468c;
-  position: absolute;
+  display: none;
+  position: fixed;
+  left: 200px;
   top: 0;
-  left: 0;
-  text-decoration: none;
-  border: none;
   width: 50px;
+  color: $primary-blue;
+  background-color: whitesmoke;
+  text-decoration: none;
+  font-size: 2rem;
+  transition: 0.25s ease;
+  border: none;
+  outline: none;
+  vertical-align: middle;
+  cursor: pointer;
 }
 
-@media screen and (max-height: 450px) {
-  .sidenav {
-    padding-top: 15px;
+.sidenav__button--open {
+  left: 0;
+}
+
+.sidenav__list__items {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidenav__list__item {
+  padding: 0.5rem;
+  transition: 0.25s ease;
+}
+
+.sidenav__list__item:hover,
+.sidenav__list__item--active {
+  border-left: 5px solid white;
+  background-color: $primary-purple;
+}
+
+@media screen and (max-width: 768px) {
+  .sidenav__button {
+    display: block;
   }
-  .sidenav__link {
-    font-size: 18px;
+  .sidenav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    transform: translateX(-100%);
+    transition: 0.25s ease;
+  }
+
+  .sidebar--openned {
+    transform: translateX(0);
+  }
+
+  .sidebar---closed {
+    width: 0;
   }
 }

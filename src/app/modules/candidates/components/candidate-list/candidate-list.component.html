@@ -1,0 +1,33 @@
+<a class="tas-btn tas-btn--pink" routerLink="registro">
+  Registrar un candidato</a>
+<h2>Lista de candidatos</h2>
+<div class="table-wrapper">
+  <table class="tas-table">
+    <thead class="tas-table__header">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Cargo aspirado</th>
+        <th>Canal de atracción</th>
+        <th>Hoja de vida</th>
+      </tr>
+    </thead>
+    <tbody class="tas-table__body">
+      <tr *ngFor="let candidate of candidates; let i = index">
+        <th scope="row">
+          <a [routerLink]="['/candidatos', candidate.id]">{{ candidate.id }}</a>
+        </th>
+        <td>{{ candidate.name }}</td>
+        <td>{{ candidate.email }}</td>
+        <td>{{ candidate.phoneNumber }}</td>
+        <td>{{ candidate.aspiratedJob }}</td>
+        <td>{{ candidate.attractionChannel }}</td>
+        <td>
+          <a [href]="candidate.CVUrl" target="_blank" rel="noopener">Click</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
