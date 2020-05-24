@@ -1,0 +1,18 @@
+<app-header title="Administración"></app-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <div class="btn-group btn-group-lg my-3">
+        <a routerLink="canales" routerLinkActive="active" class="btn btn-info">Canales</a>
+        <a routerLink="empleos" routerLinkActive="active" class="btn btn-info">Empleos</a>
+        <a routerLink="estados" routerLinkActive="active" class="btn btn-info">Estados</a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

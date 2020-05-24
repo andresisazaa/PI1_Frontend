@@ -9,7 +9,7 @@ import { CandidatesService } from 'src/app/core/services/candidates.service';
   styleUrls: ['./candidate.component.scss']
 })
 export class CandidateComponent implements OnInit {
-  candidate: Candidate;
+  candidate: any;
   id: number;
   constructor(private activatedRoute: ActivatedRoute,
               private candidatesService: CandidatesService) { }

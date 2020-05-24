@@ -1,57 +1,39 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { Job } from 'src/app/shared/models/job.model';
+import { Job } from '../../shared/models/job.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JobsService {
-
+  private URL = `${environment.backend_URL}/jobs`;
   constructor(private http: HttpClient) { }
 
   getJobs(): Observable<Job[]> {
-    return this.http.get(`${environment.backend_URL}/jobs`)
-      .pipe(map(response => {
-        const jobs: Job[] = [];
-        Object.keys(response).forEach(key => {
-          const { id, name, description } = response[key];
-          const job: Job = { id, name, description };
-          jobs.push(job);
-        });
-        return jobs;
-      }));
+    return this.http.get(`${this.URL}`)
+      .pipe(map((res: Job[]) => res));
   }
 
   getJobById(id: number): Observable<Job> {
-    return this.http.get(`${environment.backend_URL}/jobs/${id}`)
-      .pipe(map(response => {
-        const id = response['id'];
-        const name = response['name'];
-        const description = response['descripton'];
-        const job: Job = { id, name, description };
-        return job;
-      }));
+    return this.http.get(`${this.URL}/${id}`)
+      .pipe(map((res: Job) => res));
   }
 
-  createJob(jobData: Object): Observable<Job> {
-    return this.http.post(`${environment.backend_URL}/jobs`, { ...jobData })
-      .pipe(map(response => {
-        const id = response['id'];
-        const name = response['name'];
-        const description = response['descripton'];
-        const job: Job = { id, name, description };
-        return job;
-      }));
+  createJob(job: Job): Observable<Job> {
+    return this.http.post(`${this.URL}`, job)
+      .pipe(map((res: Job) => res));
   }
 
-  updateJob(jobData: Job) {
-    return this.http.put(`${environment.backend_URL}/jobs/${jobData.id}`, { ...jobData });
+  updateJob(job: Job): Observable<string> {
+    return this.http.put(`${this.URL}/${job.id}`, job)
+      .pipe(map((res: string) => res));
   }
 
-  deleteJob(id: number) {
-    return this.http.delete(`${environment.backend_URL}/jobs/${id}`);
+  deleteJob(id: number): Observable<string> {
+    return this.http.delete(`${this.URL}/${id}`)
+      .pipe(map((res: string) => res));
   }
 }

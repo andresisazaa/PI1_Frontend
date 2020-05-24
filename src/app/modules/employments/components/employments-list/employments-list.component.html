@@ -1,1 +1,35 @@
-<p>employments-list works!</p>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col">
+      <a class="btn btn-primary bg-pink" routerLink="nuevo">
+        Abrir oferta
+      </a>
+      <h2>Lista de Ofertas</h2>
+      <div class="table-responsive animate__animated animate__fadeIn">
+        <table class="table table-bordered table-striped tas-table">
+          <thead class="tas-table__header">
+            <tr>
+              <th>ID</th>
+              <th>Cargo</th>
+              <th>Fecha apertura</th>
+              <th>Estado</th>
+              <th>Fecha cierre</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="!loadingEmployments">
+            <tr *ngFor="let employment of employments; let i = index">
+              <th scope="row">
+                <a [routerLink]="[employment.id]">{{ employment.id }}</a>
+              </th>
+              <td>{{ employment.job.name }}</td>
+              <td>{{ employment.openingDate }}</td>
+              <td>{{ employment.status }}</td>
+              <td>{{ employment.closingDate }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <app-loading [loading]="loadingEmployments"></app-loading>
+    </div>
+  </div>
+</div>

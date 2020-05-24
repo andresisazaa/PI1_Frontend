@@ -1,0 +1,20 @@
+<h2>Lista de canales</h2>
+<div class="table-responsive animate__animated animate__fadeIn">
+  <table class="table table-bordered table-striped tas-table">
+    <thead class="tas-table__header">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="!loadingChannels">
+      <tr *ngFor="let channel of channels; let i = index">
+        <th scope="row">
+          <a [routerLink]="[channel.id]">{{ channel.id }}</a>
+        </th>
+        <td>{{ channel.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-loading [loading]="loadingChannels"></app-loading>

@@ -1,0 +1,20 @@
+<h2>Lista de empleos</h2>
+<div class="table-responsive animate__animated animate__fadeIn">
+  <table class="table table-bordered table-striped tas-table">
+    <thead class="tas-table__header">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="!loadingJobs">
+      <tr *ngFor="let job of jobs; let i = index">
+        <th scope="row">
+          <a [routerLink]="[job.id]">{{ job.id }}</a>
+        </th>
+        <td>{{ job.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-loading [loading]="loadingJobs"></app-loading>

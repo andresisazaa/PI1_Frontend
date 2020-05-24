@@ -22,10 +22,25 @@
 }
 
 .tas-btn:hover {
-    opacity: 0.75;
-    box-shadow: 2px 2px 2px 2px rgba($color:gray, $alpha: 0.75);
+  opacity: 0.75;
+  box-shadow: 2px 2px 2px 2px rgba($color: gray, $alpha: 0.75);
 }
 
 .tas-btn:focus {
   outline: none;
+}
+
+.bg-pink {
+  background-color: $primary-pink !important;
+  border-color: $primary-pink !important;
+}
+
+.bg-blue {
+  background-color: $primary-blue !important;
+  border-color: $primary-blue !important;
+}
+
+.bg-purple {
+  background-color: $primary-purple !important;
+  border-color: $primary-purple !important;
 }

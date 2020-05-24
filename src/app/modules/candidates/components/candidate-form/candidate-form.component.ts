@@ -1,60 +1,50 @@
-import { Component, OnInit } from "@angular/core";
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder,
-} from "@angular/forms";
-
-import { Candidate } from "../../../../shared/models/candidate.model";
-import { forkJoin } from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { forkJoin } from 'rxjs';
+import { Candidate } from '../../../../shared/models/candidate.model';
 import { CandidatesService } from 'src/app/core/services/candidates.service';
 import { ChannelsService } from 'src/app/core/services/channels.service';
 import { JobsService } from 'src/app/core/services/jobs.service';
+import { Job } from '../../../../shared/models/job.model';
+import { Channel } from '../../../../shared/models/channel.model';
 
 @Component({
-  selector: "app-candidate-form",
-  templateUrl: "./candidate-form.component.html",
-  styleUrls: ["./candidate-form.component.scss"],
+  selector: 'app-candidate-form',
+  templateUrl: './candidate-form.component.html',
+  styleUrls: ['./candidate-form.component.scss'],
 })
 export class CandidateFormComponent implements OnInit {
   candidatesForm: FormGroup;
   submitted: boolean = false;
-  aspiratedJobs = [];
-  attractionChannels = [];
+  aspiratedJobs: Job[] = [];
+  attractionChannels: Channel[] = [];
 
   constructor(
     private candidatesService: CandidatesService,
     private channelsService: ChannelsService,
     private jobsService: JobsService,
     private formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.candidatesForm = this.formBuilder.group({
-      name: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(10),
-      ]),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      phoneNumber: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(7),
-      ]),
-      aspiratedJob: new FormControl(null, Validators.required),
-      attractionChannel: new FormControl(null, Validators.required),
-      CVUrl: new FormControl(null, Validators.required),
-    });
+    this.candidatesForm = this.createCandidateForm();
     forkJoin([
       this.channelsService.getChannels(),
       this.jobsService.getJobs(),
-    ]).subscribe((response) => {
-      this.attractionChannels = response[0].map((channel) => {
-        return { id: channel.id, name: channel.name };
-      });
-      this.aspiratedJobs = response[1].map((job) => {
-        return { id: job.id, name: job.name };
-      });
+    ]).subscribe(([attractionChannels, aspiratedJobs]) => {
+      this.attractionChannels = attractionChannels.map(channel => ({ id: channel.id, name: channel.name }));
+      this.aspiratedJobs = aspiratedJobs.map(job => ({ id: job.id, name: job.name }));
+    });
+  }
+
+  createCandidateForm(): FormGroup {
+    return this.formBuilder.group({
+      name: [null, [Validators.required, Validators.minLength(10)]],
+      email: [null, [Validators.required, Validators.email]],
+      phoneNumber: [null, [Validators.required, Validators.minLength(7)]],
+      aspiratedJob: [null, Validators.required],
+      attractionChannel: [null, Validators.required],
+      CVUrl: [null, Validators.required]
     });
   }
 
@@ -67,18 +57,16 @@ export class CandidateFormComponent implements OnInit {
     if (this.candidatesForm.invalid) {
       return;
     }
-    const name = this.candidatesForm.value["name"];
-    const email = this.candidatesForm.value["email"];
-    const phoneNumber = this.candidatesForm.value["phoneNumber"];
-    const aspiratedJob = this.candidatesForm.value["aspiratedJob"];
-    const attractionChannel = this.candidatesForm.value["attractionChannel"];
-    const CVUrl = this.candidatesForm.value["CVUrl"];
-
+    const {
+      name,
+      email,
+      phoneNumber,
+      attractionChannel,
+      CVUrl } = this.candidatesForm.value;
     const candidate: Candidate = {
       name,
       email,
       phoneNumber,
-      aspiratedJob,
       attractionChannel,
       CVUrl,
     };

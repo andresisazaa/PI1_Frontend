@@ -9,49 +9,31 @@ import { Channel } from 'src/app/shared/models/channel.model';
   providedIn: 'root'
 })
 export class ChannelsService {
-
+  private URL = `${environment.backend_URL}/channels`;
   constructor(private http: HttpClient) { }
 
   getChannels(): Observable<Channel[]> {
-    return this.http.get(`${environment.backend_URL}/channels`)
-      .pipe(map(response => {
-        const channels: Channel[] = [];
-        Object.keys(response).forEach(key => {
-          const { id, name, description } = response[key];
-          const channel: Channel = { id, name, description };
-          channels.push(channel);
-        });
-        return channels;
-      }));
+    return this.http.get(`${this.URL}`)
+      .pipe(map((res: Channel[]) => res));
   }
 
   getChannelById(id: number): Observable<Channel> {
-    return this.http.get(`${environment.backend_URL}/channels/${id}`)
-      .pipe(map(response => {
-        const id = response['id'];
-        const name = response['name'];
-        const description = response['descripton'];
-        const channel: Channel = { id, name, description };
-        return channel;
-      }));
+    return this.http.get(`${this.URL}/${id}`)
+      .pipe(map((res: Channel) => res));
   }
 
-  createChannel(channelData: Object): Observable<Channel> {
-    return this.http.post(`${environment.backend_URL}/channels`, { ...channelData })
-      .pipe(map(response => {
-        const id = response['id'];
-        const name = response['name'];
-        const description = response['descripton'];
-        const channel: Channel = { id, name, description };
-        return channel;
-      }));
+  createChannel(channel: Channel): Observable<Channel> {
+    return this.http.post(`${this.URL}`, channel)
+      .pipe(map((res: Channel) => res));
   }
 
-  updateChannel(channelData: Channel) {
-    return this.http.put(`${environment.backend_URL}/channels/${channelData.id}`, { ...channelData });
+  updateChannel(channel: Channel): Observable<string> {
+    return this.http.put(`${this.URL}/${channel.id}`, channel)
+      .pipe(map((res: string) => res));
   }
 
-  deleteChannel(id: number) {
-    return this.http.delete(`${environment.backend_URL}/channels/${id}`);
+  deleteChannel(id: number): Observable<string> {
+    return this.http.delete(`${this.URL}/${id}`)
+      .pipe(map((res: string) => res));
   }
 }

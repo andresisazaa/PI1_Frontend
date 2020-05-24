@@ -3,8 +3,6 @@
 .header-section {
   background-color: $primary-pink;
   padding: 0.5rem;
-  height: 70px;
-  border-bottom-right-radius: 70%;
 }
 
 .header__title {
@@ -12,14 +10,4 @@
   font-family: $font-lato;
   font-size: 2rem;
   margin: 0.5rem;
-}
-
-@media screen and (max-width: 768px) {
-  .header__title {
-    text-align: center;
-    margin: 0.2rem;
-  }
-  .header-section {
-    height: 100px;
-  }
 }

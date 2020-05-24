@@ -1,20 +1,20 @@
-<a class="tas-btn tas-btn--pink" routerLink="registro">
-  Registrar un candidato</a>
+<a class="btn btn-primary bg-pink" routerLink="registro">
+  Registrar un candidato
+</a>
 <h2>Lista de candidatos</h2>
-<div class="table-wrapper">
-  <table class="tas-table">
+<div class="table-responsive animate__animated animate__fadeIn">
+  <table class="table table-bordered table-striped tas-table">
     <thead class="tas-table__header">
       <tr>
         <th>ID</th>
         <th>Nombre</th>
         <th>Email</th>
         <th>Teléfono</th>
-        <th>Cargo aspirado</th>
         <th>Canal de atracción</th>
-        <th>Hoja de vida</th>
+        <th>CV</th>
       </tr>
     </thead>
-    <tbody class="tas-table__body">
+    <tbody *ngIf="!loadingCandidates">
       <tr *ngFor="let candidate of candidates; let i = index">
         <th scope="row">
           <a [routerLink]="['/candidatos', candidate.id]">{{ candidate.id }}</a>
@@ -22,12 +22,14 @@
         <td>{{ candidate.name }}</td>
         <td>{{ candidate.email }}</td>
         <td>{{ candidate.phoneNumber }}</td>
-        <td>{{ candidate.aspiratedJob }}</td>
-        <td>{{ candidate.attractionChannel }}</td>
-        <td>
-          <a [href]="candidate.CVUrl" target="_blank" rel="noopener">Click</a>
+        <td>{{ candidate.channel.name }}</td>
+        <td class="text-center">
+          <a [href]="candidate.CVUrl" target="_blank" rel="noopener">
+            <i class="fa fa-eye align-middle" aria-hidden="true"></i>
+          </a>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+<app-loading [loading]="loadingCandidates"></app-loading>

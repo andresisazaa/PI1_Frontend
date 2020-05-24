@@ -1,24 +1,29 @@
 <nav class="sidenav" [ngClass]="{ 'sidebar--openned': open}">
-    <div class="sidenav__image-container">
-        <img class="sidenav__image" src="assets/logo-blanco.png" alt="TechAndSolve" />
-    </div>
-    <ul class="sidenav__list__items">
-        <li class="sidenav__list__item" routerLinkActive="sidenav__list__item--active">
-            <a routerLink="/candidatos" class="sidenav__link">
-                <i class="fa fa-users sidenav__link__icon"></i>
-                Candidatos</a>
-        </li>
-        <li class="sidenav__list__item" routerLinkActive="sidenav__list__item--active">
-            <a routerLink="/procesos" class="sidenav__link">
-                <i class="fa fa-briefcase sidenav__link__icon"></i>
-                Procesos de selección</a>
-        </li>
-        <li class="sidenav__list__item" routerLinkActive="sidenav__list__item--active">
-            <a routerLink="/reportes" class="sidenav__link">
-                <i class="fa fa-area-chart sidenav__link__icon"></i>
-                Reportes</a>
-        </li>
-    </ul>
+  <div class="sidenav__image-container">
+    <img class="sidenav__image" src="assets/logo-blanco.png" alt="TechAndSolve" />
+  </div>
+  <ul class="sidenav__list__items">
+    <li class="sidenav__list__item" routerLinkActive="sidenav__list__item--active">
+      <a routerLink="/candidatos" class="sidenav__link">
+        <i class="fa fa-users sidenav__link__icon"></i>
+        Candidatos</a>
+    </li>
+    <li class="sidenav__list__item" routerLinkActive="sidenav__list__item--active">
+      <a routerLink="/procesos" class="sidenav__link">
+        <i class="fa fa-briefcase sidenav__link__icon"></i>
+        Procesos de selección</a>
+    </li>
+    <li class="sidenav__list__item" routerLinkActive="sidenav__list__item--active">
+      <a routerLink="/reportes" class="sidenav__link">
+        <i class="fa fa-area-chart sidenav__link__icon"></i>
+        Reportes</a>
+    </li>
+    <li class="sidenav__list__item" routerLinkActive="sidenav__list__item--active">
+      <a routerLink="/administracion" class="sidenav__link">
+        <i class="fa fa-tachometer sidenav__link__icon"></i>
+        Administración</a>
+    </li>
+  </ul>
 </nav>
-<button [ngClass]="{'sidenav__button--open': !open}" class="sidenav__button" (click)="changeSidebarStatus()"><i
-        class="fa fa-bars"></i></button>
+<button [ngClass]="{'sidenav__button--open': !open}" class="sidenav__button" (click)="changeSidebarStatus()">
+  <i class="fa fa-bars"></i></button>

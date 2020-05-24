@@ -8,17 +8,23 @@ import { CandidatesService } from 'src/app/core/services/candidates.service';
   styleUrls: ['./candidate-list.component.scss']
 })
 export class CandidateListComponent implements OnInit {
-  candidates: Candidate[] = [];
+  candidates = [];
+  loadingCandidates: boolean;
   constructor(private candidatesService: CandidatesService) { }
 
   ngOnInit(): void {
+    this.getCandidates();
+  }
+
+  getCandidates(): void {
+    this.loadingCandidates = true;
     this.candidatesService.getCandidates()
       .subscribe(candidates => {
+        this.loadingCandidates = false;
         this.candidates = candidates;
       }, error => {
-        console.error(error);
+        this.loadingCandidates = false;
         console.log('No se pudieron obtener los candidatos');
       });
   }
-
 }

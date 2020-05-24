@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EmploymentsService } from 'src/app/core/services/employments.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-employment',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employment.component.scss']
 })
 export class EmploymentComponent implements OnInit {
-
-  constructor() { }
-
+  employment: any;
+  constructor(private employmentsService: EmploymentsService, private route: ActivatedRoute) { }
   ngOnInit(): void {
+    this.route.params.subscribe(({ id }) => {
+      this.employmentsService.getEmploymentById(id).subscribe(employment => {
+        this.employment = employment;
+      });
+    })
   }
+
+
 
 }

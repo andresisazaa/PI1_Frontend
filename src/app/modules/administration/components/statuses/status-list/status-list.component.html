@@ -1,0 +1,22 @@
+<h2>Lista de estados</h2>
+<div *ngIf="!loadingStatuses && loadedStatusesSuccess" class="table-responsive animate__animated animate__fadeIn">
+  <table class="table table-bordered table-striped tas-table">
+    <thead class="tas-table__header">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let status of statuses; let i = index">
+        <th scope="row">
+          <a [routerLink]="[status.id]">{{ status.id }}</a>
+        </th>
+        <td>{{ status.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-loading [loading]="loadingStatuses"></app-loading>
+<app-error-message class="animate__animated animate__fadeIn" [error]="!loadedStatusesSuccess" [message]="errorMessage">
+</app-error-message>
