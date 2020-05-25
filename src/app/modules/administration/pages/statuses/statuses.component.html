@@ -1,1 +1,5 @@
-<router-outlet></router-outlet>
+<button class="btn btn-danger bg-pink" (click)="showFormModal = true">Agregar estado</button>
+<app-status-list></app-status-list>
+<app-modal [showModal]="showFormModal" (onCloseModal)="closeModal()" modalTitle="Crea un nuevo estado">
+  <app-status-form></app-status-form>
+</app-modal>

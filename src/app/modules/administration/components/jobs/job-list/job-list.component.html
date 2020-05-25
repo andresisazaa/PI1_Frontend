@@ -1,20 +1,33 @@
-<h2>Lista de empleos</h2>
-<div class="table-responsive animate__animated animate__fadeIn">
-  <table class="table table-bordered table-striped tas-table">
+<div class="table-responsive my-3 animate__animated animate__fadeIn">
+  <table *ngIf="!loadingJobs" class="table table-sm table-bordered table-striped tas-table">
     <thead class="tas-table__header">
-      <tr>
+      <tr class="text-center">
         <th>ID</th>
-        <th>Nombre</th>
+        <th>Empleo</th>
+        <th>Acciones</th>
       </tr>
     </thead>
-    <tbody *ngIf="!loadingJobs">
-      <tr *ngFor="let job of jobs; let i = index">
-        <th scope="row">
-          <a [routerLink]="[job.id]">{{ job.id }}</a>
-        </th>
-        <td>{{ job.name }}</td>
+    <tbody>
+      <tr *ngFor="let job of jobs">
+        <td class="text-center align-middle">{{ job.id }}</td>
+        <td class="align-middle">{{ job.name }}</td>
+        <td class="text-center align-middle">
+          <i class="fa fa-2x fa-eye mx-1 text-info" (click)="viewJobDetails(job)"></i>
+          <i class="fa fa-2x fa-pencil mx-1 text-warning" (click)="editJob(job)"></i>
+          <i class="fa fa-2x fa-trash mx-1 text-danger"></i>
+        </td>
       </tr>
     </tbody>
   </table>
 </div>
 <app-loading [loading]="loadingJobs"></app-loading>
+
+
+<app-modal *ngIf="jobViewFlag" [showModal]="showModal" (onCloseModal)="closeModal()" modalTitle="Detalle del empleo">
+  <app-job-detail [job]="job"></app-job-detail>
+</app-modal>
+
+
+<app-modal *ngIf="jobEditFlag" [showModal]="showModal" (onCloseModal)="closeModal()" modalTitle="Edita un canal">
+  <app-job-form [job]="job"></app-job-form>
+</app-modal>

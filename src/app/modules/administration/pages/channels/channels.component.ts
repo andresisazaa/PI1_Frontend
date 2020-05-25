@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./channels.component.scss']
 })
 export class ChannelsComponent implements OnInit {
-
+  showFormModal: boolean;
   constructor() { }
+  ngOnInit(): void { }
 
-  ngOnInit(): void {
+  closeModal() {
+    this.showFormModal = false;
   }
-
 }

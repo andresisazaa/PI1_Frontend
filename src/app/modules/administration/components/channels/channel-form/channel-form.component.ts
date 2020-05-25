@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { Channel } from 'src/app/shared/models/channel.model';
 
 @Component({
   selector: 'app-channel-form',
@@ -7,6 +8,8 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
   styleUrls: ['./channel-form.component.scss']
 })
 export class ChannelFormComponent implements OnInit {
+  channelId: number;
+  @Input() channel: Channel;
   channelForm: FormGroup;
   constructor(private formBuilder: FormBuilder) { }
 
@@ -16,8 +19,8 @@ export class ChannelFormComponent implements OnInit {
 
   createChannelForm(): FormGroup {
     return this.formBuilder.group({
-      name: [null, Validators.required],
-      description: [null]
+      name: [this.channel ? this.channel.name : null, Validators.required],
+      description: [this.channel ? this.channel.description : null]
     });
   }
 

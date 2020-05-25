@@ -9,6 +9,10 @@ import { JobsService } from 'src/app/core/services/jobs.service';
 })
 export class JobListComponent implements OnInit {
   jobs: Job[] = [];
+  job: Job;
+  showModal: boolean;
+  jobViewFlag: boolean;
+  jobEditFlag: boolean;
   loadingJobs: boolean;
   constructor(private jobsService: JobsService) { }
 
@@ -24,4 +28,27 @@ export class JobListComponent implements OnInit {
     });
   }
 
+  viewJobDetails(job: Job): void {
+    this.jobsService.getJobById(job.id)
+      .subscribe(job => {
+        this.job = job;
+        this.showModal = true;
+        this.jobViewFlag = true;
+      });
+  }
+
+  editJob(job: Job): void {
+    this.jobsService.getJobById(job.id)
+      .subscribe(job => {
+        this.job = job;
+        this.showModal = true;
+        this.jobEditFlag = true;
+      });
+  }
+
+  closeModal(): void {
+    this.showModal = false;
+    this.jobViewFlag = false;
+    this.jobEditFlag = false;
+  }
 }

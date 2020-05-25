@@ -2,7 +2,7 @@
   Registrar un candidato
 </a>
 <h2>Lista de candidatos</h2>
-<div class="table-responsive animate__animated animate__fadeIn">
+<div *ngIf="!loadingCandidates" class="table-responsive animate__animated animate__fadeIn">
   <table class="table table-bordered table-striped tas-table">
     <thead class="tas-table__header">
       <tr>
@@ -14,10 +14,10 @@
         <th>CV</th>
       </tr>
     </thead>
-    <tbody *ngIf="!loadingCandidates">
-      <tr *ngFor="let candidate of candidates; let i = index">
-        <th scope="row">
-          <a [routerLink]="['/candidatos', candidate.id]">{{ candidate.id }}</a>
+    <tbody>
+      <tr *ngFor="let candidate of candidates">
+        <th scope=" row">
+          <a [routerLink]="[candidate.id]">{{ candidate.id }}</a>
         </th>
         <td>{{ candidate.name }}</td>
         <td>{{ candidate.email }}</td>

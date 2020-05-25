@@ -8,6 +8,7 @@ import { RouterModule } from "@angular/router";
 import { LoadingComponent } from './components/loading/loading.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ErrorMessageComponent } from './components/error-message/error-message.
     HeaderComponent,
     LoadingComponent,
     NotFoundComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    ModalComponent
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -24,7 +26,8 @@ import { ErrorMessageComponent } from './components/error-message/error-message.
     FooterComponent,
     HeaderComponent,
     LoadingComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    ModalComponent
   ],
 })
 export class SharedModule { }

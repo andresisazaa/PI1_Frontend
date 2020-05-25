@@ -10,6 +10,11 @@ import { ChannelsService } from 'src/app/core/services/channels.service';
 export class ChannelListComponent implements OnInit {
   channels: Channel[] = [];
   loadingChannels: boolean;
+  showModal: boolean;
+  channel: Channel;
+  channelViewFlag: boolean;
+  channelEditFlag: boolean;
+  channelDeleteFlag: boolean;
   constructor(private channelsService: ChannelsService) { }
 
   ngOnInit(): void {
@@ -24,4 +29,29 @@ export class ChannelListComponent implements OnInit {
     });
   }
 
+
+  viewChannelDetails(channel: Channel): void {
+    this.channelsService.getChannelById(channel.id)
+      .subscribe(channel => {
+        this.channel = channel;
+        this.showModal = true;
+        this.channelViewFlag = true;
+      });
+  }
+
+  editChannel(channel: Channel): void {
+    this.channelsService.getChannelById(channel.id)
+      .subscribe(channel => {
+        this.channel = channel;
+        this.showModal = true;
+        this.channelEditFlag = true;
+      });
+  }
+
+  closeModal(): void {
+    this.showModal = false;
+    this.channelViewFlag = false;
+    this.channelEditFlag = false;
+    this.channelDeleteFlag = false;
+  }
 }

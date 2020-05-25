@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./statuses.component.scss']
 })
 export class StatusesComponent implements OnInit {
-
+  showFormModal: boolean;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  closeModal() {
+    this.showFormModal = false;
   }
 
 }

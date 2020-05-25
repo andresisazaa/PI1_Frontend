@@ -1,1 +1,5 @@
-<router-outlet></router-outlet>
+<button class="btn btn-danger bg-pink" (click)="showFormModal = true">Agregar empleo</button>
+<app-job-list></app-job-list>
+<app-modal [showModal]="showFormModal" (onCloseModal)="closeModal()" modalTitle="Crea un nuevo empleo">
+  <app-job-form></app-job-form>
+</app-modal>

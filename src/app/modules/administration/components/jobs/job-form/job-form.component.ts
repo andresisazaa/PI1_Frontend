@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { Job } from 'src/app/shared/models/job.model';
 
 @Component({
   selector: 'app-job-form',
@@ -8,6 +9,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 })
 export class JobFormComponent implements OnInit {
   jobForm: FormGroup;
+  @Input() job: Job;
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -16,8 +18,8 @@ export class JobFormComponent implements OnInit {
 
   createJobForm(): FormGroup {
     return this.formBuilder.group({
-      name: [null, Validators.required],
-      description: [null]
+      name: [this.job ? this.job.name : null, Validators.required],
+      description: [this.job ? this.job.description : null]
     });
   }
 
