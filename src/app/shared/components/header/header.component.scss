@@ -1,0 +1,13 @@
+@import "../../../../scss//variables";
+
+.header-section {
+  background-color: $primary-pink;
+  padding: 0.5rem;
+}
+
+.header__title {
+  color: white;
+  font-family: $font-lato;
+  font-size: 2rem;
+  margin: 0.5rem;
+}

@@ -1,0 +1,123 @@
+<section class="form-section">
+  <div class="x-row">
+    <div class="x-col-100">
+      <h3 class="form-section__title">Registrar un candidato</h3>
+    </div>
+  </div>
+  <form [formGroup]="candidatesForm" (ngSubmit)="submitForm()">
+    <div class="form-group">
+      <label>Nombre completo</label>
+      <input
+        class="form-control"
+        type="text"
+        formControlName="name"
+        placeholder="John Doe"
+        [ngClass]="{ invalid: submitted && f.name.errors }"
+      />
+      <div *ngIf="submitted && f.name.errors">
+        <small *ngIf="f.name.errors.required">Nombre es requerido</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input
+        class="form-control"
+        type="email"
+        formControlName="email"
+        placeholder="email@example.com"
+        [ngClass]="{ invalid: submitted && f.email.errors }"
+      />
+      <div *ngIf="submitted && f.email.errors">
+        <small *ngIf="f.email.errors.required">Email es requerido</small>
+        <small *ngIf="f.email.errors.email">Email debe ser válido</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Teléfono</label>
+      <input
+        class="form-control"
+        type="number"
+        formControlName="phoneNumber"
+        placeholder="300 123 4567"
+        [ngClass]="{ invalid: submitted && f.phoneNumber.errors }"
+      />
+      <div
+        class="form__item__validator"
+        *ngIf="submitted && f.phoneNumber.errors"
+      >
+        <small *ngIf="f.phoneNumber.errors.required">
+          Teléfono es requerido
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Cargo aspirado</label>
+      <select
+        class="form-control"
+        formControlName="aspiratedJob"
+        [ngClass]="{ invalid: submitted && f.aspiratedJob.errors }"
+      >
+        <option [ngValue]="null" disabled>Seleccione uno...</option>
+        <option
+          *ngFor="let aspiratedJob of aspiratedJobs"
+          [ngValue]="aspiratedJob.id"
+        >
+          {{ aspiratedJob.name }}
+        </option>
+      </select>
+      <div *ngIf="submitted && f.aspiratedJob.errors">
+        <small *ngIf="f.aspiratedJob.errors.required">
+          Cargo aspirado es requerido
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Canal de atracción</label>
+      <select
+        class="form-control"
+        formControlName="attractionChannel"
+        [ngClass]="{ invalid: submitted && f.attractionChannel.errors }"
+      >
+        <option [ngValue]="null" disabled>Seleccione uno...</option>
+        <option
+          *ngFor="let attractionChannel of attractionChannels"
+          [ngValue]="attractionChannel.id"
+        >
+          {{ attractionChannel.name }}
+        </option>
+      </select>
+      <div
+        class="form__item__validator"
+        *ngIf="submitted && f.attractionChannel.errors"
+      >
+        <small *ngIf="f.attractionChannel.errors.required"
+          >Canal de atracción es requerido</small
+        >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Hoja de vida</label>
+      <input
+        class="form-control"
+        type="text"
+        formControlName="CVUrl"
+        placeholder="Enlace"
+        [ngClass]="{ invalid: submitted && f.CVUrl.errors }"
+      />
+      <div class="form__item__validator" *ngIf="submitted && f.CVUrl.errors">
+        <small *ngIf="f.CVUrl.errors.required">
+          La hoja de vida es requerida
+        </small>
+      </div>
+    </div>
+
+    <div class="form__item">
+      <button class="btn btn-primary bg-blue" type="submit">
+        Registrar candidato
+      </button>
+    </div>
+  </form>
+</section>

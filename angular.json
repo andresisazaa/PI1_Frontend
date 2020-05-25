@@ -22,13 +22,16 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/scss/styles.scss",
+              "node_modules/font-awesome/scss/font-awesome.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/animate.css/animate.min.css"
             ],
             "scripts": []
           },
@@ -45,7 +48,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -124,6 +126,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "pi1-frontend"
+    }
+  },
+  "defaultProject": "pi1-frontend",
+  "cli": {
+    "analytics": false
+  }
 }
