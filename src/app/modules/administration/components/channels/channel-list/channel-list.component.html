@@ -1,0 +1,32 @@
+<div class="table-responsive my-3 animate__animated animate__fadeIn">
+  <table *ngIf="!loadingChannels" class="table table-sm table-bordered table-striped tas-table">
+    <thead class="tas-table__header">
+      <tr class="text-center">
+        <th>ID</th>
+        <th>Canal</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let channel of channels">
+        <td class="text-center align-middle">{{ channel.id }}</td>
+        <td class="align-middle">{{ channel.name }}</td>
+        <td class="text-center align-middle">
+          <i class="fa fa-2x fa-eye mx-1 text-info" (click)="viewChannelDetails(channel)"></i>
+          <i class="fa fa-2x fa-pencil mx-1 text-warning" (click)="editChannel(channel)"></i>
+          <i class="fa fa-2x fa-trash mx-1 text-danger"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-loading [loading]="loadingChannels"></app-loading>
+
+<app-modal *ngIf="channelViewFlag" [showModal]="showModal" (onCloseModal)="closeModal()" modalTitle="Detalle del canal">
+  <app-channel-detail [channel]="channel"></app-channel-detail>
+</app-modal>
+
+
+<app-modal *ngIf="channelEditFlag" [showModal]="showModal" (onCloseModal)="closeModal()" modalTitle="Edita un canal">
+  <app-channel-form [channel]="channel"></app-channel-form>
+</app-modal>

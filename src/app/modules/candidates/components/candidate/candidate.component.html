@@ -1,0 +1,20 @@
+<article *ngIf="candidate" class="candidate">
+  <div class="candidate__item">
+    <span class="candidate__item__label">Nombre</span>
+    <span class="candidate__item__value">{{ candidate.name }}</span>
+  </div>
+  <div class="candidate__item">
+    <span class="candidate__item__label">Email</span>
+    <span class="candidate__item__value">{{ candidate.email }}</span>
+  </div>
+  <div class="candidate__item">
+    <span class="candidate__item__label">Teléfono</span>
+    <span class="candidate__item__value">{{ candidate.phoneNumber }}</span>
+  </div>
+  <div class="candidate__item">
+    <span class="candidate__item__label">Canal de atracción</span>
+    <span class="candidate__item__value">
+      {{ candidate.attractionChannel }}
+    </span>
+  </div>
+</article>

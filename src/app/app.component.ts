@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'pi1-frontend';
+  open: boolean = true;
+
+  changeSidebar(sidebarStatus: boolean) {
+    this.open = sidebarStatus;
+  }
 }

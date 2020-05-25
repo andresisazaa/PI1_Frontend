@@ -1,0 +1,20 @@
+@import "../../../../../scss/variables";
+
+.candidate {
+  display: flex;
+  flex-direction: column;
+}
+
+.candidate__item {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 250px;
+  margin: 0.5rem;
+}
+
+.candidate__item__label {
+  font-weight: bold;
+  color: $primary-pink;
+  padding-bottom: 0.5rem;
+}

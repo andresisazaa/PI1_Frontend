@@ -1,0 +1,14 @@
+@import "../../../../scss/variables";
+
+.footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: $primary-purple;
+  color: white;
+}
+
+.footer__content {
+  text-align: center;
+}
