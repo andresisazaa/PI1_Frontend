@@ -19,11 +19,7 @@ export class SidebarComponent implements OnInit {
     this.onSidebarChanges.emit(this.open);
   }
 
-  navigate() {
-    // this.router.navigateByUrl('/candidatos')
-  }
-
-  logOut() {
+  logout() {
     this.authService.signOut();
   }
 }
