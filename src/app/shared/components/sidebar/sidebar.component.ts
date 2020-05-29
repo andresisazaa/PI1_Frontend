@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/authentication/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 export class SidebarComponent implements OnInit {
   open: boolean = true;
   @Output() onSidebarChanges = new EventEmitter<boolean>();
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() { }
 
@@ -18,7 +19,11 @@ export class SidebarComponent implements OnInit {
     this.onSidebarChanges.emit(this.open);
   }
 
-  navigate(){
+  navigate() {
     // this.router.navigateByUrl('/candidatos')
+  }
+
+  logOut() {
+    this.authService.signOut();
   }
 }
