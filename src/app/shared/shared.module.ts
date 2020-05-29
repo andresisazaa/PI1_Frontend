@@ -9,6 +9,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ModalComponent } from './components/modal/modal.component';
     LoadingComponent,
     NotFoundComponent,
     ErrorMessageComponent,
-    ModalComponent
+    ModalComponent,
+    HomeComponent
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -27,7 +29,8 @@ import { ModalComponent } from './components/modal/modal.component';
     HeaderComponent,
     LoadingComponent,
     ErrorMessageComponent,
-    ModalComponent
+    ModalComponent,
+    HomeComponent
   ],
 })
 export class SharedModule { }
