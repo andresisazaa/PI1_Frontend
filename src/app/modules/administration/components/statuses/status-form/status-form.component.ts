@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { Status } from 'src/app/shared/models/status.model';
 
 @Component({
   selector: 'app-status-form',
@@ -8,6 +9,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 })
 export class StatusFormComponent implements OnInit {
   statusForm: FormGroup;
+  @Input() status: Status;
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -16,8 +18,8 @@ export class StatusFormComponent implements OnInit {
 
   createStatusForm(): FormGroup {
     return this.formBuilder.group({
-      name: [null, Validators.required],
-      description: [null]
+      name: [this.status ? this.status.name : null, Validators.required],
+      description: [this.status ? this.status.description : null]
     });
   }
 

@@ -1,4 +1,4 @@
-<button class="btn btn-danger bg-pink" (click)="showFormModal = true">Agregar canal</button>
+<button mat-raised-button color="primary" (click)="showFormModal = true">Agregar canal</button>
 <app-channel-list></app-channel-list>
 <app-modal [showModal]="showFormModal" (onCloseModal)="closeModal()" modalTitle="Crea un nuevo canal">
   <app-channel-form></app-channel-form>

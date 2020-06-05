@@ -13,7 +13,8 @@ const routes: Routes = [
       { path: 'administracion', loadChildren: () => import('./modules/administration/administration.module').then(m => m.AdministrationModule) }
     ]
   },
-  { path: 'login', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) }
+  { path: 'login', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) },
+  { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 
 @NgModule({

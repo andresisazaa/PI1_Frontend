@@ -64,3 +64,11 @@ body {
   background-color: $primary-purple;
   color: white;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+table, mat-paginator {
+  width: 100%;
+}

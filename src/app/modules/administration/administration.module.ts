@@ -16,6 +16,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StatusDetailComponent } from './components/statuses/status-detail/status-detail.component';
 import { JobDetailComponent } from './components/jobs/job-detail/job-detail.component';
 import { ChannelDetailComponent } from './components/channels/channel-detail/channel-detail.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -37,7 +47,17 @@ import { ChannelDetailComponent } from './components/channels/channel-detail/cha
     CommonModule,
     SharedModule,
     AdministrationRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTabsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ]
 })
 export class AdministrationModule { }

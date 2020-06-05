@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { JobsService } from 'src/app/core/services/jobs.service';
 import { Job } from 'src/app/shared/models/job.model';
+import { Employment } from 'src/app/shared/models/employment.model';
 
 @Component({
   selector: 'app-employment-form',
@@ -9,9 +10,14 @@ import { Job } from 'src/app/shared/models/job.model';
   styleUrls: ['./employment-form.component.scss']
 })
 export class EmploymentFormComponent implements OnInit {
-  jobs: Job[] = [];
+  @Output() submitEmployment: EventEmitter<Employment>;
   employmentForm: FormGroup;
-  constructor(private jobsService: JobsService, private formBuilder: FormBuilder) { }
+  jobs: Job[] = [];
+  constructor(
+    private jobsService: JobsService,
+    private formBuilder: FormBuilder) {
+    this.submitEmployment = new EventEmitter<Employment>();
+  }
 
   ngOnInit(): void {
     this.getJobs();
@@ -32,20 +38,11 @@ export class EmploymentFormComponent implements OnInit {
     });
   }
 
-  get job(): AbstractControl {
-    return this.employmentForm.get('job');
-  }
-
-  get openingDate(): AbstractControl {
-    return this.employmentForm.get('openingDate');
-  }
-
-  get description(): AbstractControl {
-    return this.employmentForm.get('description');
-  }
-
   submit(): void {
-    console.log(this.employmentForm.value);
+    if (this.employmentForm.invalid) {
+      return;
+    }
+    const employment: Employment = this.employmentForm.value;
+    this.submitEmployment.emit(employment);
   }
-
 }

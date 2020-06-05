@@ -1,1 +1,8 @@
-<p>status-detail works!</p>
+<article *ngIf="status">
+  <h5>Id</h5>
+  <p>{{ status.id }}</p>
+  <h5>Name</h5>
+  <p>{{ status.name }}</p>
+  <h5>Description</h5>
+  <p>{{ status.description }}</p>
+</article>

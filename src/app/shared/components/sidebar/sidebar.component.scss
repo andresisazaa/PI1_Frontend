@@ -48,7 +48,7 @@
 }
 
 .sidenav__button {
-  display: none;
+  // display: none;
   position: fixed;
   left: 200px;
   top: 0;
@@ -85,24 +85,22 @@
   background-color: $primary-purple;
 }
 
-@media screen and (max-width: 768px) {
-  .sidenav__button {
-    display: block;
-  }
-  .sidenav {
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 100;
-    transform: translateX(-100%);
-    transition: 0.25s ease;
-  }
+.sidenav__button {
+  display: block;
+}
+.sidenav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  transform: translateX(-100%);
+  transition: 0.25s ease;
+}
 
-  .sidebar--openned {
-    transform: translateX(0);
-  }
+.sidebar--openned {
+  transform: translateX(0);
+}
 
-  .sidebar---closed {
-    width: 0;
-  }
+.sidebar---closed {
+  width: 0;
 }

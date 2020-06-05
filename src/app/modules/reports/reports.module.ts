@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReportsRoutingModule } from './reports.routes';
-
+import { GoogleChartsModule } from 'angular-google-charts';
 import { ReportsComponent } from './components/reports/reports.component';
 import { SharedModule } from '../../shared/shared.module';
 
@@ -12,7 +12,8 @@ import { SharedModule } from '../../shared/shared.module';
   imports: [
     CommonModule,
     ReportsRoutingModule,
-    SharedModule
+    SharedModule,
+    GoogleChartsModule
   ]
 })
 export class ReportsModule { }
