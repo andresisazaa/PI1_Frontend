@@ -4,6 +4,9 @@ import { StatusesService } from 'src/app/core/services/statuses.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { StatusDetailComponent } from '../status-detail/status-detail.component';
+import { StatusFormComponent } from '../status-form/status-form.component';
 
 @Component({
   selector: 'app-status-list',
@@ -17,12 +20,8 @@ export class StatusListComponent implements OnInit {
   displayedColumns: string[] = [];
   statuses: Status[] = [];
   loadingStatuses: boolean;
-  showModal: boolean;
   status: Status;
-  statusViewFlag: boolean;
-  statusEditFlag: boolean;
-  statusDeleteFlag: boolean;
-  constructor(private statusesService: StatusesService) { }
+  constructor(private statusesService: StatusesService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getStatuses();
@@ -38,35 +37,17 @@ export class StatusListComponent implements OnInit {
   }
 
   setTableConfig(): void {
-    this.displayedColumns = ['ID', 'name', 'actions'];
+    this.displayedColumns = ['id', 'name', 'actions'];
     this.statusesData = new MatTableDataSource<Status>(this.statuses);
     this.statusesData.paginator = this.paginator;
     this.statusesData.sort = this.sort;
   }
 
-
   viewStatusDetails(status: Status): void {
-    this.statusesService.getStatusById(status.id)
-      .subscribe(status => {
-        this.status = status;
-        this.showModal = true;
-        this.statusViewFlag = true;
-      });
+    this.dialog.open(StatusDetailComponent, { data: status });
   }
 
   editStatus(status: Status): void {
-    this.statusesService.getStatusById(status.id)
-      .subscribe(status => {
-        this.status = status;
-        this.showModal = true;
-        this.statusEditFlag = true;
-      });
-  }
-
-  closeModal(): void {
-    this.showModal = false;
-    this.statusViewFlag = false;
-    this.statusEditFlag = false;
-    this.statusDeleteFlag = false;
+    this.dialog.open(StatusFormComponent, { data: status });
   }
 }

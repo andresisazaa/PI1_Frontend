@@ -29,7 +29,7 @@ export class ChannelsService {
 
   updateChannel(channel: Channel): Observable<string> {
     return this.http.put(`${this.URL}/${channel.id}`, channel)
-      .pipe(map((res: string) => res));
+      .pipe(map((res: { message: string }) => res.message));
   }
 
   deleteChannel(id: number): Observable<string> {

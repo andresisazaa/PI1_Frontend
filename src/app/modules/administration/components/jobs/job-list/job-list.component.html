@@ -6,13 +6,13 @@
     </ng-container>
 
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Canal</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Empleo</th>
       <td mat-cell *matCellDef="let job">{{ job.name }}</td>
     </ng-container>
 
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        Descripción
+        Acciones
       </th>
       <td mat-cell *matCellDef="let job">
         <i
@@ -34,15 +34,4 @@
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
   </mat-paginator>
 </div>
-
 <app-loading [loading]="loadingJobs"></app-loading>
-
-
-<app-modal *ngIf="jobViewFlag" [showModal]="showModal" (onCloseModal)="closeModal()" modalTitle="Detalle del empleo">
-  <app-job-detail [job]="job"></app-job-detail>
-</app-modal>
-
-
-<app-modal *ngIf="jobEditFlag" [showModal]="showModal" (onCloseModal)="closeModal()" modalTitle="Edita un canal">
-  <app-job-form [job]="job"></app-job-form>
-</app-modal>

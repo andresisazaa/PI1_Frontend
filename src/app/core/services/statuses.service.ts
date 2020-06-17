@@ -27,9 +27,9 @@ export class StatusesService {
       .pipe(map((res: Status) => res));
   }
 
-  updateStatus(id: number, status: Status): Observable<string> {
-    return this.http.put(`${this.URL}/${id}`, status)
-      .pipe(map((res: string) => res));
+  updateStatus(status: Status): Observable<string> {
+    return this.http.put(`${this.URL}/${status.id}`, status)
+      .pipe(map((res: { message: string }) => res.message));
   }
 
   deleteStatus(id: number): Observable<string> {

@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Job } from 'src/app/shared/models/job.model';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-job-detail',
@@ -7,6 +8,5 @@ import { Job } from 'src/app/shared/models/job.model';
   styleUrls: ['./job-detail.component.scss']
 })
 export class JobDetailComponent {
-  @Input() job: Job;
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public job: Job) { }
 }

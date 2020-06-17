@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ChannelFormComponent } from '../../components/channels/channel-form/channel-form.component';
 
 @Component({
   selector: 'app-channels',
   templateUrl: './channels.component.html',
   styleUrls: ['./channels.component.scss']
 })
-export class ChannelsComponent implements OnInit {
+export class ChannelsComponent {
   showFormModal: boolean;
-  constructor() { }
-  ngOnInit(): void { }
+  constructor(private dialog: MatDialog) { }
 
-  closeModal() {
-    this.showFormModal = false;
+  openAddChannelModal() {
+    this.dialog.open(ChannelFormComponent, { data: { channel: null } })
   }
 }

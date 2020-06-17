@@ -9,7 +9,6 @@ export class HomeComponent {
   open: boolean = false;
   constructor() { }
   changeSidebar(sidebarStatus: boolean) {
-    console.log(sidebarStatus);
     this.open = sidebarStatus;
   }
 }

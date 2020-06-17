@@ -26,6 +26,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,10 @@ import { MatSortModule } from '@angular/material/sort';
     MatNativeDateModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
-  ]
+    MatSortModule,
+    MatDialogModule,
+    MatSnackBarModule,
+  ],
+  providers: [ { provide: MAT_DIALOG_DATA, useValue: {} }]
 })
 export class AdministrationModule { }

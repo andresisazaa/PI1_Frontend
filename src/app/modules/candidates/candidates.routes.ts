@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { CandidateComponent } from './components/candidate/candidate.component';
 import { CandidatesComponent } from './pages/candidates/candidates.component';
 import { CandidateListComponent } from './components/candidate-list/candidate-list.component';
-import { NewCandidateComponent } from './components/new-candidate/new-candidate.component';
 
 export const candidatesRoutes: Routes = [
   {
@@ -12,7 +11,6 @@ export const candidatesRoutes: Routes = [
     component: CandidatesComponent,
     children: [
       { path: '', component: CandidateListComponent },
-      { path: 'registro', component: NewCandidateComponent },
       { path: ':id', component: CandidateComponent },
     ],
   },

@@ -4,6 +4,9 @@ import { ChannelsService } from 'src/app/core/services/channels.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { ChannelDetailComponent } from '../channel-detail/channel-detail.component';
+import { ChannelFormComponent } from '../channel-form/channel-form.component';
 
 @Component({
   selector: 'app-channel-list',
@@ -17,12 +20,9 @@ export class ChannelListComponent implements OnInit {
   displayedColumns: string[] = [];
   channels: Channel[] = [];
   loadingChannels: boolean;
-  showModal: boolean;
-  channel: Channel;
-  channelViewFlag: boolean;
-  channelEditFlag: boolean;
-  channelDeleteFlag: boolean;
-  constructor(private channelsService: ChannelsService) { }
+  constructor(
+    private channelsService: ChannelsService,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getChannels();
@@ -30,11 +30,12 @@ export class ChannelListComponent implements OnInit {
 
   getChannels(): void {
     this.loadingChannels = true;
-    this.channelsService.getChannels().subscribe(channels => {
-      this.channels = channels;
-      this.setTableConfig();
-      this.loadingChannels = false;
-    });
+    this.channelsService.getChannels()
+      .subscribe(channels => {
+        this.channels = channels;
+        this.setTableConfig();
+        this.loadingChannels = false;
+      });
   }
 
   setTableConfig(): void {
@@ -44,29 +45,11 @@ export class ChannelListComponent implements OnInit {
     this.channelsData.sort = this.sort;
   }
 
-
   viewChannelDetails(channel: Channel): void {
-    this.channelsService.getChannelById(channel.id)
-      .subscribe(channel => {
-        this.channel = channel;
-        this.showModal = true;
-        this.channelViewFlag = true;
-      });
+    this.dialog.open(ChannelDetailComponent, { data: channel });
   }
 
   editChannel(channel: Channel): void {
-    this.channelsService.getChannelById(channel.id)
-      .subscribe(channel => {
-        this.channel = channel;
-        this.showModal = true;
-        this.channelEditFlag = true;
-      });
-  }
-
-  closeModal(): void {
-    this.showModal = false;
-    this.channelViewFlag = false;
-    this.channelEditFlag = false;
-    this.channelDeleteFlag = false;
+    this.dialog.open(ChannelFormComponent, { data: channel });
   }
 }

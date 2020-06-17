@@ -4,6 +4,8 @@ import { CandidatesService } from 'src/app/core/services/candidates.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { NewCandidateComponent } from '../new-candidate/new-candidate.component';
 
 @Component({
   selector: 'app-candidate-list',
@@ -17,7 +19,10 @@ export class CandidateListComponent implements OnInit {
   displayedColumns: string[] = [];
   candidates = [];
   loadingCandidates: boolean;
-  constructor(private candidatesService: CandidatesService) { }
+  constructor(
+    private candidatesService: CandidatesService,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.getCandidates();
@@ -32,7 +37,6 @@ export class CandidateListComponent implements OnInit {
         this.setTableConfig();
       }, error => {
         this.loadingCandidates = false;
-        console.log('No se pudieron obtener los candidatos', error);
       });
   }
 
@@ -42,4 +46,9 @@ export class CandidateListComponent implements OnInit {
     this.candidateData.paginator = this.paginator;
     this.candidateData.sort = this.sort;
   }
+
+  openCandidateModal() {
+    this.dialog.open(NewCandidateComponent);
+  }
+
 }

@@ -4,6 +4,9 @@ import { JobsService } from 'src/app/core/services/jobs.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { JobDetailComponent } from '../job-detail/job-detail.component';
+import { MatDialog } from '@angular/material/dialog';
+import { JobFormComponent } from '../job-form/job-form.component';
 
 @Component({
   selector: 'app-job-list',
@@ -17,11 +20,10 @@ export class JobListComponent implements OnInit {
   displayedColumns: string[] = [];
   jobs: Job[] = [];
   job: Job;
-  showModal: boolean;
-  jobViewFlag: boolean;
-  jobEditFlag: boolean;
   loadingJobs: boolean;
-  constructor(private jobsService: JobsService) { }
+  constructor(
+    private jobsService: JobsService,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getJobs();
@@ -44,26 +46,10 @@ export class JobListComponent implements OnInit {
   }
 
   viewJobDetails(job: Job): void {
-    this.jobsService.getJobById(job.id)
-      .subscribe(job => {
-        this.job = job;
-        this.showModal = true;
-        this.jobViewFlag = true;
-      });
+    this.dialog.open(JobDetailComponent, { data: job });
   }
 
   editJob(job: Job): void {
-    this.jobsService.getJobById(job.id)
-      .subscribe(job => {
-        this.job = job;
-        this.showModal = true;
-        this.jobEditFlag = true;
-      });
-  }
-
-  closeModal(): void {
-    this.showModal = false;
-    this.jobViewFlag = false;
-    this.jobEditFlag = false;
+    this.dialog.open(JobFormComponent, { data: job });
   }
 }

@@ -17,6 +17,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { NewCandidateComponent } from './components/new-candidate/new-candidate.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     CandidateComponent,
@@ -37,7 +39,9 @@ import { NewCandidateComponent } from './components/new-candidate/new-candidate.
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
 })
 export class CandidatesModule { }

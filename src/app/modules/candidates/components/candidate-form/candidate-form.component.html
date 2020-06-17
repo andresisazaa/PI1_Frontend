@@ -48,7 +48,18 @@
       <input matInput formControlName="CVUrl" />
     </mat-form-field>
   </div>
-  <button mat-raised-button type="submit" color="primary">
-    Agregar Candidato
-  </button>
+  <mat-dialog-actions>
+    <button
+      [disabled]="candidateForm.invalid"
+      mat-dialog-close
+      mat-raised-button
+      type="submit"
+      color="primary"
+    >
+      Agregar Candidato
+    </button>
+    <button mat-dialog-close mat-stroked-button type="button" color="secundary">
+      Cancelar
+    </button>
+  </mat-dialog-actions>
 </form>

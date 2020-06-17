@@ -29,7 +29,7 @@ export class JobsService {
 
   updateJob(job: Job): Observable<string> {
     return this.http.put(`${this.URL}/${job.id}`, job)
-      .pipe(map((res: string) => res));
+      .pipe(map((res: { message: string }) => res.message));
   }
 
   deleteJob(id: number): Observable<string> {

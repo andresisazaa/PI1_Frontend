@@ -15,10 +15,6 @@ export class NewEmploymentComponent implements OnInit {
   }
   createEmployment(employment: Employment) {
     this.employmentsService.createEmployment(employment)
-      .subscribe(emp => {
-        console.log('EMPLEO CREADO EXITOSAMENTE', emp);
-      }, error => {
-        console.log('OCURRIÓ UN ERROR', error);
-      });
+      .subscribe(emp => { }, error => { });
   }
 }

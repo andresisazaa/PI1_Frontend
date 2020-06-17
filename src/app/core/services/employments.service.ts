@@ -17,7 +17,7 @@ export class EmploymentsService {
       .pipe(map((res: Employment[]) => res));
   }
 
-  getEmploymentById(id: string): Observable<Employment> {
+  getEmploymentById(id: number): Observable<Employment> {
     return this.http.get(`${this.URL}/${id}`)
       .pipe(map((res: Employment) => res));
   }

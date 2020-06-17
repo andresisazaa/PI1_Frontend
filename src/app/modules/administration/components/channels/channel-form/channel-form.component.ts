@@ -1,6 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Channel } from 'src/app/shared/models/channel.model';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ChannelsService } from 'src/app/core/services/channels.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-channel-form',
@@ -8,10 +11,17 @@ import { Channel } from 'src/app/shared/models/channel.model';
   styleUrls: ['./channel-form.component.scss']
 })
 export class ChannelFormComponent implements OnInit {
-  channelId: number;
-  @Input() channel: Channel;
+  channel: Channel;
   channelForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) { }
+  @Output() submitChannel: EventEmitter<Channel>;
+  constructor(
+    private formBuilder: FormBuilder,
+    private channelsService: ChannelsService,
+    private snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) public data: Channel) {
+    this.submitChannel = new EventEmitter<Channel>();
+    this.channel = data || null;
+  }
 
   ngOnInit(): void {
     this.channelForm = this.createChannelForm();
@@ -24,15 +34,24 @@ export class ChannelFormComponent implements OnInit {
     });
   }
 
-  get name(): AbstractControl {
-    return this.channelForm.get('name');
-  }
-
-  get description(): AbstractControl {
-    return this.channelForm.get('description');
-  }
-
   submit(): void {
-    console.log(this.channelForm.value);
+    const channel: Channel = this.channelForm.value;
+    this.submitChannel.emit(channel);
+    if (this.channel === null) {
+      this.channelsService.createChannel(channel)
+        .subscribe(createdChannel => {
+          this.snackBar.open(`Canal con id ${createdChannel.id} agregado`, null, { duration: 2000 })
+        }, error => {
+          this.snackBar.open('No se pudo agregar el canal', null, { duration: 2000 });
+        })
+    } else {
+      channel.id = this.channel.id;
+      this.channelsService.updateChannel(channel)
+        .subscribe(message => {
+          this.snackBar.open(message, null, { duration: 2000 })
+        }, ({ error }) => {
+          this.snackBar.open(error.message, null, { duration: 2000 });
+        })
+    }
   }
 }

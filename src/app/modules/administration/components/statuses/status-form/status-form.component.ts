@@ -1,6 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Status } from 'src/app/shared/models/status.model';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Job } from 'src/app/shared/models/job.model';
+import { StatusesService } from 'src/app/core/services/statuses.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-status-form',
@@ -9,8 +13,14 @@ import { Status } from 'src/app/shared/models/status.model';
 })
 export class StatusFormComponent implements OnInit {
   statusForm: FormGroup;
-  @Input() status: Status;
-  constructor(private formBuilder: FormBuilder) { }
+  status: Status;
+  constructor(
+    private formBuilder: FormBuilder,
+    private statusesService: StatusesService,
+    private snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) public data: Job) {
+    this.status = this.data;
+  }
 
   ngOnInit(): void {
     this.statusForm = this.createStatusForm();
@@ -23,15 +33,23 @@ export class StatusFormComponent implements OnInit {
     });
   }
 
-  get name(): AbstractControl {
-    return this.statusForm.get('name');
-  }
-
-  get description(): AbstractControl {
-    return this.statusForm.get('description');
-  }
-
   submit(): void {
-    console.log(this.statusForm.value);
+    const status: Status = this.statusForm.value;
+    if (this.status === null) {
+      this.statusesService.createStatus(status)
+        .subscribe(createdStatus => {
+          this.snackBar.open(`Estadi con id ${createdStatus.id} agregado`, null, { duration: 2000 })
+        }, error => {
+          this.snackBar.open('No se pudo agregar el estado', null, { duration: 2000 });
+        })
+    } else {
+      status.id = this.status.id;
+      this.statusesService.updateStatus(status)
+        .subscribe(message => {
+          this.snackBar.open(message, null, { duration: 2000 })
+        }, ({ error }) => {
+          this.snackBar.open(error.message, null, { duration: 2000 });
+        })
+    }
   }
 }

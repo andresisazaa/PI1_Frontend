@@ -32,7 +32,6 @@ export class CandidateFormComponent implements OnInit {
       this.attractionChannels = channels;
       this.aspiratedJobs = jobs;
     }, error => {
-      console.log('ERROR', error);
     });
   }
 
